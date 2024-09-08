@@ -15,8 +15,13 @@ export const addOneContact = async () => {
     }
   }
 
-  const contact = createFakeContact();
-  existingData.push(contact);
+  try {
+    const contact = createFakeContact();
+    existingData.push(contact);
+  } catch (err) {
+    console.error('Помилка при створенні контакту:', err);
+    return;
+  }
 
   try {
     await fs.writeFile(PATH_DB, JSON.stringify(existingData, null, 2));

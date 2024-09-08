@@ -16,8 +16,12 @@ const generateContacts = async (number) => {
   }
 
   for (let i = 0; i < number; i++) {
-    const contact = createFakeContact();
-    existingData.push(contact);
+    try {
+      const contact = createFakeContact();
+      existingData.push(contact);
+    } catch (err) {
+      console.error('Помилка при створенні контакту:', err);
+    }
   }
 
   try {
